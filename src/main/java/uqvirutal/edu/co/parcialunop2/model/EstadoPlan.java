@@ -5,5 +5,6 @@ package uqvirutal.edu.co.parcialunop2.model;
  */
 public enum EstadoPlan {
     ACTIVO,
-    INACTIVO
+    SUSPENDIDO,
+    FINALIZADO,
 }

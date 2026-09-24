@@ -97,7 +97,7 @@ public class Inscripcion {
 
     @Override
     public String toString() {
-        return cliente.getNombreCompleto() + " -> " + plan.getNombre()
+        return cliente.getNombre() + " -> " + plan.getNombre()
                 + " | Total: $" + calcularValorFinal();
     }
 }

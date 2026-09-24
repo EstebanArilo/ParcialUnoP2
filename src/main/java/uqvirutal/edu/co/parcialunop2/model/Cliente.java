@@ -4,47 +4,27 @@ import java.time.LocalDate;
 /**
  * Representa a un cliente registrado
  */
-public class Cliente {
+public class Cliente extends Persona {
 
-    private String nombreCompleto;
-    private String documento;
-    private String telefono;
     private String correo;
     private int edad;
     private LocalDate fechaRegistro;
 
-    public Cliente (String nombreCompleto, String documento, String telefono,String correo, int edad, LocalDate fechaRegistro){
-
-        this.nombreCompleto= nombreCompleto;
-        this.documento= documento;
-        this.telefono= telefono;
-        this.correo= correo;
-        this.edad= edad;
-        this.fechaRegistro= fechaRegistro;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
-
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    /**
+     * Constructor de la clase hija Cliente que extiende
+     * de Persona
+     * @param nombre
+     * @param id
+     * @param telefono
+     * @param correo
+     * @param edad
+     * @param fechaRegistro
+     */
+    public Cliente(String nombre, String id, String telefono, String correo, int edad, LocalDate fechaRegistro) {
+        super(nombre, id, telefono);
+        this.correo = correo;
+        this.edad = edad;
+        this.fechaRegistro = fechaRegistro;
     }
 
     public String getCorreo() {
@@ -74,12 +54,12 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "nombreCompleto='" + nombreCompleto + '\'' +
-                ", documento='" + documento + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", correo='" + correo + '\'' +
+                "correo='" + correo + '\'' +
                 ", edad=" + edad +
                 ", fechaRegistro=" + fechaRegistro +
+                ", nombre='" + nombre + '\'' +
+                ", id='" + id + '\'' +
+                ", telefono='" + telefono + '\'' +
                 '}';
     }
 }

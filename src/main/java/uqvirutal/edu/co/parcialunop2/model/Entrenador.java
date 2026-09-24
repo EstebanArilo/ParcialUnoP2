@@ -5,37 +5,24 @@ package uqvirutal.edu.co.parcialunop2.model;
  * Representa un entrenador del gimnasio, asignable a clientes
  * con planes personalizados.
  */
-public class Entrenador {
+public class Entrenador extends Persona {
 
-    private String identificacion;
-    private String nombre;
     private String especialidad;
-    private String telefono;
     private double tarifaPorSesion;
 
-    public Entrenador(String identificacion, String nombre, String especialidad,
-                      String telefono, double tarifaPorSesion) {
-        this.identificacion = identificacion;
-        this.nombre = nombre;
+    /**
+     * Constructor de la clase hija Entrenador que
+     * extiende de Persona
+     * @param nombre
+     * @param id
+     * @param telefono
+     * @param especialidad
+     * @param tarifaPorSesion
+     */
+    public Entrenador(String nombre, String id, String telefono, String especialidad, double tarifaPorSesion) {
+        super(nombre, id, telefono);
         this.especialidad = especialidad;
-        this.telefono = telefono;
         this.tarifaPorSesion = tarifaPorSesion;
-    }
-
-    public String getIdentificacion() {
-        return identificacion;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getEspecialidad() {
@@ -46,20 +33,23 @@ public class Entrenador {
         this.especialidad = especialidad;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
     public double getTarifaPorSesion() {
         return tarifaPorSesion;
     }
 
     public void setTarifaPorSesion(double tarifaPorSesion) {
         this.tarifaPorSesion = tarifaPorSesion;
+    }
+
+    @Override
+    public String toString() {
+        return "Entrenador{" +
+                "especialidad='" + especialidad + '\'' +
+                ", tarifaPorSesion=" + tarifaPorSesion +
+                ", nombre='" + nombre + '\'' +
+                ", id='" + id + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
     }
 
     /**
@@ -70,8 +60,4 @@ public class Entrenador {
         return tarifaPorSesion * cantidadSesiones;
     }
 
-    @Override
-    public String toString() {
-        return nombre + " - " + especialidad;
-    }
 }
