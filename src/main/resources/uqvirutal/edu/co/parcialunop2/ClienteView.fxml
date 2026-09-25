@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uqvirutal.edu.co.parcialunop2.controller.ClienteController">
+    <!-- Encabezado con Botón de Regreso -->
+    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #1b4332; -fx-padding: 10;">
+        <Button onAction="#handleVolverMenu" style="-fx-background-color: #2d6a4f; -fx-text-fill: white; -fx-font-weight: bold;" text="← Menú Principal" />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Gestión de Clientes - SmartGym" />
+    </HBox>
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- Formulario de Entrada -->
+    <GridPane hgap="10.0" vgap="10.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="txtNombre" promptText="Nombre completo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtTelefono" promptText="Número telefónico" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtCorreo" promptText="correo@ejemplo.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Edad:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="txtEdad" promptText="Edad" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    </GridPane>
+
+    <!-- Botones CRUD y Utilidad -->
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <Button onAction="#handleRegistrarCliente" style="-fx-background-color: #2ec4b6; -fx-text-fill: white;" text="Registrar" />
+        <Button onAction="#handleActualizarCliente" text="Actualizar" />
+        <Button onAction="#handleEliminarCliente" style="-fx-background-color: #e63946; -fx-text-fill: white;" text="Eliminar" />
+        <Button onAction="#handleLimpiarCampos" text="Limpiar" />
+        <Separator orientation="VERTICAL" />
+        <Button onAction="#handleValidarTelefonoPerfecto" style="-fx-background-color: #ff9f1c; -fx-text-fill: white;" text="¿Teléfono Perfecto?" />
+    </HBox>
+
+    <!-- Tabla de Clientes -->
+    <TableView fx:id="tblClientes" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNombre" prefWidth="180.0" text="Nombre" />
+            <TableColumn fx:id="colTelefono" prefWidth="130.0" text="Teléfono" />
+            <TableColumn fx:id="colCorreo" prefWidth="200.0" text="Correo Electrónico" />
+            <TableColumn fx:id="colEdad" prefWidth="70.0" text="Edad" />
+        </columns>
+    </TableView>
+</VBox>

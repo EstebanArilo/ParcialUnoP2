@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uqvirutal.edu.co.parcialunop2.controller.ServicioController">
+    <!-- Encabezado -->
+    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #1b4332; -fx-padding: 10;">
+        <Button onAction="#handleVolverMenu" style="-fx-background-color: #2d6a4f; -fx-text-fill: white; -fx-font-weight: bold;" text="← Menú Principal" />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Gestión de Servicios Adicionales - SmartGym" />
+    </HBox>
+
+    <padding>
+        <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+    </padding>
+
+    <!-- Formulario de Entrada -->
+    <GridPane hgap="10.0" vgap="8.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="130.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints minWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <!-- Selección en Cascada: Cliente -> Plan -->
+        <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <ComboBox fx:id="cmbCliente" prefWidth="250.0" promptText="Seleccione Cliente" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Plan del Cliente:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <ComboBox fx:id="cmbPlan" prefWidth="250.0" promptText="Seleccione Plan" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+        <Label text="Código Servicio:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtCodigo" promptText="Ej: SER-01" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Nombre:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <TextField fx:id="txtNombre" promptText="Ej: Asesoría Nutricional" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+        <Label text="Precio ($):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtPrecio" promptText="Costo del servicio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Disponible:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <CheckBox fx:id="chkDisponible" selected="true" text="Sí" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+        <Label text="Descripción:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="txtDescripcion" promptText="Detalles del servicio adicional" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+    </GridPane>
+
+    <!-- Botones CRUD -->
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <Button onAction="#handleRegistrarServicio" style="-fx-background-color: #2ec4b6; -fx-text-fill: white; -fx-font-weight: bold;" text="Registrar Servicio" />
+        <Button onAction="#handleActualizarServicio" text="Actualizar" />
+        <Button onAction="#handleEliminarServicio" style="-fx-background-color: #e63946; -fx-text-fill: white;" text="Eliminar" />
+        <Button onAction="#handleLimpiarCampos" text="Limpiar" />
+    </HBox>
+
+    <!-- Tabla de Servicios Adicionales -->
+    <TableView fx:id="tblServicios" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCodigo" prefWidth="90.0" text="Código" />
+            <TableColumn fx:id="colNombre" prefWidth="150.0" text="Nombre Servicio" />
+            <TableColumn fx:id="colCliente" prefWidth="140.0" text="Cliente" />
+            <TableColumn fx:id="colPlan" prefWidth="140.0" text="Plan Asociado" />
+            <TableColumn fx:id="colPrecio" prefWidth="100.0" text="Precio ($)" />
+            <TableColumn fx:id="colDisponible" prefWidth="90.0" text="Disponible" />
+            <TableColumn fx:id="colDescripcion" prefWidth="180.0" text="Descripción" />
+        </columns>
+    </TableView>
+</VBox>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uqvirutal.edu.co.parcialunop2.controller.ReportesController">
+    <!-- Encabezado con Botón de Regreso -->
+    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #1b4332; -fx-padding: 10;">
+        <Button onAction="#handleVolverMenu" style="-fx-background-color: #2d6a4f; -fx-text-fill: white; -fx-font-weight: bold;" text="← Menú Principal" />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" text="Consultas y Reportes - SmartGym" />
+    </HBox>
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- SECCIÓN 1: BÚSQUEDA DE CLIENTE Y NÚMERO PERFECTO -->
+    <TitledPane animated="false" text="Consulta de Cliente y Número Perfecto">
+        <VBox spacing="10.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label text="Número Telefónico:" />
+                <TextField fx:id="txtTelefono" promptText="Ej: 6 o 28" />
+                <Button onAction="#handleBuscarClientePorTelefono" style="-fx-background-color: #2ec4b6; -fx-text-fill: white;" text="Buscar Cliente y Verificar" />
+            </HBox>
+
+            <GridPane hgap="10.0" vgap="8.0">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120.0" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+                <Label style="-fx-font-weight: bold;" text="Cliente Encontrado:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="lblNombreCliente" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label style="-fx-font-weight: bold;" text="Diagnóstico Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="lblResultadoPerfecto" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+            </GridPane>
+        </VBox>
+    </TitledPane>
+
+    <!-- SECCIÓN 2: INGRESOS POR PERIODO -->
+    <TitledPane animated="false" text="Reporte de Ingresos por Periodo">
+        <VBox spacing="10.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+                <Label text="Fecha Inicio:" />
+                <DatePicker fx:id="dpFechaInicio" />
+
+                <Label text="Fecha Fin:" />
+                <DatePicker fx:id="dpFechaFin" />
+
+                <Button onAction="#handleCalcularIngresos" style="-fx-background-color: #ff9f1c; -fx-text-fill: white;" text="Calcular Ingresos" />
+            </HBox>
+
+            <Separator />
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Total Ingresos Generados en el Periodo:" />
+                <Label fx:id="lblTotalIngresos" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2ec4b6;" text="0.0" />
+            </HBox>
+
+            <!-- Tabla de Inscripciones Filtradas -->
+            <TableView fx:id="tblInscripciones" prefHeight="200.0">
+                <columns>
+                    <TableColumn fx:id="colCodigo" prefWidth="130.0" text="Código Inscripción" />
+                    <TableColumn fx:id="colCliente" prefWidth="180.0" text="Cliente" />
+                    <TableColumn fx:id="colPlan" prefWidth="150.0" text="Plan" />
+                    <TableColumn fx:id="colFecha" prefWidth="120.0" text="Fecha Registro" />
+                    <TableColumn fx:id="colMontoTotal" prefWidth="120.0" text="Monto Total" />
+                </columns>
+            </TableView>
+        </VBox>
+    </TitledPane>
+</VBox>
