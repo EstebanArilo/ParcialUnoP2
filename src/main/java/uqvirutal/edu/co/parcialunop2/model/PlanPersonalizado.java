@@ -22,9 +22,9 @@ public class PlanPersonalizado extends Plan {
      * PlanPersonalizado es a traves de su Builder.
      */
     private PlanPersonalizado(Builder builder) {
-        // Un plan personalizado siempre es de tipo PERSONALIZADO
+
         super(builder.codigo, builder.nombre, builder.descripcion, builder.duracionMeses,
-                builder.valorMensual, builder.estado, TipoPlan.PERSONALIZADO);
+                builder.valorMensual, builder.estado, TipoPlan.PERSONALIZADO, builder.cliente);
         this.cantidadSesiones = builder.cantidadSesiones;
         this.especialidadRequerida = builder.especialidadRequerida;
         this.objetivosCliente = builder.objetivosCliente;
@@ -84,23 +84,7 @@ public class PlanPersonalizado extends Plan {
     }
 
     /**
-     * Builder de PlanPersonalizado. Permite ir configurando cada
-     * atributo con un metodo encadenado (fluent) y solo al final,
-     * con build(), se construye el objeto real.
-     *
-     * Uso:
-     * PlanPersonalizado plan = new PlanPersonalizado.Builder()
-     *         .codigo("PP-01")
-     *         .nombre("Plan Fuerza Personalizado")
-     *         .descripcion("Entrenamiento de fuerza 1 a 1")
-     *         .duracionMeses(3)
-     *         .valorMensual(250000)
-     *         .estado(EstadoPlan.ACTIVO)
-     *         .cantidadSesiones(12)
-     *         .especialidadRequerida("Fuerza")
-     *         .objetivosCliente("Ganar masa muscular")
-     *         .entrenadorAsignado(entrenador)
-     *         .build();
+     * Builder de PlanPersonalizado.
      */
     public static class Builder {
         private String codigo;
@@ -109,6 +93,7 @@ public class PlanPersonalizado extends Plan {
         private int duracionMeses;
         private double valorMensual;
         private EstadoPlan estado = EstadoPlan.ACTIVO;
+        private Cliente cliente; // Nuevo atributo en el Builder
         private int cantidadSesiones;
         private String especialidadRequerida;
         private String objetivosCliente;
@@ -144,6 +129,11 @@ public class PlanPersonalizado extends Plan {
             return this;
         }
 
+        public Builder cliente(Cliente cliente) {
+            this.cliente = cliente;
+            return this;
+        }
+
         public Builder cantidadSesiones(int cantidadSesiones) {
             this.cantidadSesiones = cantidadSesiones;
             return this;
@@ -159,20 +149,24 @@ public class PlanPersonalizado extends Plan {
             return this;
         }
 
+        // Metodo alternativo si en tu codigo tenias objetivos(String)
+        public Builder objetivos(String objetivosCliente) {
+            this.objetivosCliente = objetivosCliente;
+            return this;
+        }
+
         public Builder entrenadorAsignado(Entrenador entrenadorAsignado) {
             this.entrenadorAsignado = entrenadorAsignado;
             return this;
         }
 
         /**
-         * Construye el PlanPersonalizado con los datos configurados
-         * hasta el momento. Valida que los campos obligatorios
-         * minimos esten presentes antes de crear el objeto.
+         * Construye el PlanPersonalizado con los datos configurados.
          */
         public PlanPersonalizado build() {
-            if (codigo == null || nombre == null) {
+            if (codigo == null || nombre == null || cliente == null) {
                 throw new IllegalStateException(
-                        "codigo y nombre son obligatorios para construir un PlanPersonalizado.");
+                        "codigo, nombre y cliente son obligatorios para construir un PlanPersonalizado.");
             }
             return new PlanPersonalizado(this);
         }

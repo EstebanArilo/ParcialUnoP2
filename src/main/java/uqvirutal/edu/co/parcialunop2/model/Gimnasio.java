@@ -42,7 +42,7 @@ public final class Gimnasio {
         this.paginaWeb = "www.smartgym.com";
         this.listCliente = new ArrayList<>();
         this.listEntrenador = new ArrayList<>();
-        this.listPlan= new ArrayList<>();
+        this.listPlan = new ArrayList<>();
         this.listServicioAdicional = new ArrayList<>();
         this.listInscripcion = new ArrayList<>();
     }
@@ -113,11 +113,6 @@ public final class Gimnasio {
                 ", telefono='" + telefono + '\'' +
                 ", correoElectronico='" + correoElectronico + '\'' +
                 ", paginaWeb='" + paginaWeb + '\'' +
-                ", listCliente=" + listCliente +
-                ", listEntrenador=" + listEntrenador +
-                ", listPlan=" + listPlan +
-                ", listServicioAdicional=" + listServicioAdicional +
-                ", listInscripcion=" + listInscripcion +
                 '}';
     }
 
@@ -236,6 +231,8 @@ public final class Gimnasio {
             exist.setDuracionMeses(planActualizado.getDuracionMeses());
             exist.setValorMensual(planActualizado.getValorMensual());
             exist.setEstado(planActualizado.getEstado());
+            exist.setTipoPlan(planActualizado.getTipoPlan());
+            exist.setCliente(planActualizado.getCliente());
             return true;
         }
         return false;
@@ -247,6 +244,25 @@ public final class Gimnasio {
             return listPlan.remove(p);
         }
         return false;
+    }
+
+    /**
+     * CRUD Para Servicio
+     * @param servicio
+     * @return
+     */
+    public boolean registrarServicioAdicional(ServicioAdicional servicio) {
+        for (ServicioAdicional s : listServicioAdicional) {
+            if (s.getCodigo().equalsIgnoreCase(servicio.getCodigo())) {
+                return false;
+            }
+        }
+        listServicioAdicional.add(servicio);
+        return true;
+    }
+
+    public boolean eliminarServicioAdicional(String codigo) {
+        return listServicioAdicional.removeIf(s -> s.getCodigo().equalsIgnoreCase(codigo));
     }
 
     /**
@@ -294,5 +310,16 @@ public final class Gimnasio {
             }
         }
         return total;
+    }
+    /**
+     * Metodo CRUD para Inscripcion
+     * @param inscripcion
+     * @return boolean
+     */
+    public boolean registrarInscripcion(Inscripcion inscripcion) {
+        if (inscripcion == null) {
+            return false;
+        }
+        return listInscripcion.add(inscripcion);
     }
 }

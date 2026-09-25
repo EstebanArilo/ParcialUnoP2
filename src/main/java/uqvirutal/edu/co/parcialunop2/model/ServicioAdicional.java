@@ -11,14 +11,15 @@ public class ServicioAdicional {
     private String descripcion;
     private double precio;
     private boolean disponible;
+    private Plan planAsociado;
 
-    public ServicioAdicional(String codigo, String nombre, String descripcion,
-                             double precio, boolean disponible) {
+    public ServicioAdicional(String codigo, String nombre, String descripcion, double precio, boolean disponible, Plan planAsociado) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.disponible = disponible;
+        this.planAsociado = planAsociado;
     }
 
     public String getCodigo() {
@@ -60,6 +61,10 @@ public class ServicioAdicional {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+
+    public Plan getPlanAsociado() {return planAsociado;}
+
+    public void setPlanAsociado(Plan planAsociado) {this.planAsociado = planAsociado;}
 
     @Override
     public String toString() {

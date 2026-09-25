@@ -11,18 +11,34 @@ import java.util.List;
  */
 public class Inscripcion {
 
+    // Contador estático para autoincrementar el código dinámicamente
+    private static int contadorInscripciones = 1;
+
+    private String codigoInscripcion;
     private Cliente cliente;
     private Plan plan;
     private List<ServicioAdicional> serviciosAdicionales;
     private double porcentajeDescuento; // ej: 0.10 = 10%
     private LocalDate fechaInscripcion;
+    private EstadoInscripcion estado;
 
-    public Inscripcion(Cliente cliente, Plan plan, LocalDate fechaInscripcion) {
+    public Inscripcion(Cliente cliente, Plan plan, LocalDate fechaInscripcion, EstadoInscripcion estado) {
+        // Genera un código autoincrementable formateado (INS-001, INS-002, etc.)
+        this.codigoInscripcion = String.format("INS-%03d", contadorInscripciones++);
         this.cliente = cliente;
         this.plan = plan;
         this.fechaInscripcion = fechaInscripcion;
         this.serviciosAdicionales = new ArrayList<>();
         this.porcentajeDescuento = 0.0;
+        this.estado = estado;
+    }
+
+    public String getCodigoInscripcion() {
+        return codigoInscripcion;
+    }
+
+    public void setCodigoInscripcion(String codigoInscripcion) {
+        this.codigoInscripcion = codigoInscripcion;
     }
 
     public Cliente getCliente() {
@@ -41,9 +57,9 @@ public class Inscripcion {
         this.plan = plan;
     }
 
-    public List<ServicioAdicional> getServiciosAdicionales() {
-        return serviciosAdicionales;
-    }
+    public List<ServicioAdicional> getServiciosAdicionales() { return serviciosAdicionales; }
+
+    public void setServiciosAdicionales(List<ServicioAdicional> serviciosAdicionales) { this.serviciosAdicionales = serviciosAdicionales; }
 
     public double getPorcentajeDescuento() {
         return porcentajeDescuento;
@@ -60,6 +76,10 @@ public class Inscripcion {
     public void setFechaInscripcion(LocalDate fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
+
+    public EstadoInscripcion getEstado() { return estado; }
+
+    public void setEstado(EstadoInscripcion estado) { this.estado = estado; }
 
     /**
      * Asocia un servicio adicional a la inscripcion, solo si
@@ -95,9 +115,13 @@ public class Inscripcion {
         return subtotal - descuento;
     }
 
+    public double getMontoTotal() {
+        return calcularValorFinal();
+    }
+
     @Override
     public String toString() {
-        return cliente.getNombre() + " -> " + plan.getNombre()
+        return codigoInscripcion + " - " + cliente.getNombre() + " -> " + plan.getNombre()
                 + " | Total: $" + calcularValorFinal();
     }
 }
